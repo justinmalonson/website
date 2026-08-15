@@ -181,6 +181,10 @@
   margin-inline: auto;
 }
 
+.about-profile-image-wrapper {
+  width: clamp(240px, 32vw, 480px);
+}
+
 .hero-profile-image-wrapper img {
   display: block;
   width: 100%;

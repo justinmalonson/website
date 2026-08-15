@@ -106,7 +106,7 @@ function AboutPage() {
 
       <main>
         {/* Hero */}
-        <section className="px-5 pt-16 md:px-8 md:pt-28">
+        <section className="px-5 pt-10 md:px-8 md:pt-16">
           <nav aria-label="breadcrumb" className="label mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
@@ -125,8 +125,8 @@ function AboutPage() {
               </li>
             </ol>
           </nav>
-          <div className="flex flex-col gap-10 md:flex-row md:items-end">
-            <header className="flex-1">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,480px)] md:gap-x-12 md:gap-y-0">
+            <header className="md:col-start-1 md:row-start-1">
               <h1 className="display text-5xl leading-[0.95] sm:text-6xl md:text-8xl lg:text-9xl">
                 Justin Malonson
               </h1>
@@ -134,7 +134,7 @@ function AboutPage() {
                 Software Engineer
               </h2>
             </header>
-            <div className="hero-profile-image-wrapper shrink-0">
+            <div className="hero-profile-image-wrapper about-profile-image-wrapper md:col-start-2 md:row-span-2 md:row-start-1">
               <img
                 src="/justin-malonson.png"
                 alt="Portrait of Justin Malonson, software engineer"
@@ -146,20 +146,20 @@ function AboutPage() {
                 className="aspect-[4/5] w-full object-cover grayscale"
               />
             </div>
-          </div>
-          <div className="mt-8 grid grid-cols-1 gap-4 border-t border-foreground pt-5 text-sm md:grid-cols-3">
-            <p className="md:col-span-2 max-w-2xl">
-              Justin Malonson is a software engineer specializing in distributed systems,
-              cryptographic protocols, cybersecurity, blockchain architecture, artificial
-              intelligence infrastructure, and sovereign computing. He is also a computer scientist,
-              founder, entrepreneur, and author.
-            </p>
-            <p className="md:text-right">Software Engineer</p>
+            <div className="grid grid-cols-1 gap-4 border-t border-foreground pt-5 text-sm md:col-start-1 md:row-start-2 md:mt-10">
+              <p className="max-w-2xl">
+                Justin Malonson is a software engineer specializing in distributed systems,
+                cryptographic protocols, cybersecurity, blockchain architecture, artificial
+                intelligence infrastructure, and sovereign computing. He is also a computer
+                scientist, founder, entrepreneur, and author.
+              </p>
+              <p>Software Engineer</p>
+            </div>
           </div>
         </section>
 
         {/* Biography */}
-        <section className="px-5 py-20 md:px-8 md:py-32">
+        <section className="px-5 py-16 md:px-8 md:py-24">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">Biography</h2>
             <span className="text-xs text-muted-foreground">01 / Biography</span>
@@ -196,7 +196,7 @@ function AboutPage() {
         </section>
 
         {/* Blockchain Computer and entrepreneurship */}
-        <section className="border-t border-foreground bg-foreground px-5 py-20 text-background md:px-8 md:py-32">
+        <section className="border-t border-foreground bg-foreground px-5 py-16 text-background md:px-8 md:py-24">
           <div className="mb-12 flex items-end justify-between border-b border-background/30 pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">
               Blockchain Computer & Entrepreneurship
@@ -236,7 +236,7 @@ function AboutPage() {
         </section>
 
         {/* Research and technical work */}
-        <section className="px-5 py-20 md:px-8 md:py-32">
+        <section className="px-5 py-16 md:px-8 md:py-24">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">Research & Technical Work</h2>
             <span className="text-xs text-muted-foreground">03 / Research</span>
@@ -253,7 +253,7 @@ function AboutPage() {
         </section>
 
         {/* Current Projects */}
-        <section className="border-t border-foreground px-5 py-20 md:px-8 md:py-32">
+        <section className="border-t border-foreground px-5 py-16 md:px-8 md:py-24">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">Current Projects</h2>
             <span className="text-xs text-muted-foreground">04 / Now</span>
@@ -308,7 +308,7 @@ function AboutPage() {
         </section>
 
         {/* Vision */}
-        <section className="border-t border-foreground bg-foreground px-5 py-20 text-background md:px-8 md:py-40">
+        <section className="border-t border-foreground bg-foreground px-5 py-16 text-background md:px-8 md:py-28">
           <div className="mx-auto max-w-5xl">
             <p className="label mb-6 text-background/60">05 / Vision</p>
             <h2 className="display text-3xl sm:text-4xl md:text-7xl">
@@ -333,7 +333,7 @@ function AboutPage() {
         </section>
 
         {/* Professional Profiles */}
-        <section className="px-5 py-20 md:px-8 md:py-32">
+        <section className="px-5 py-16 md:px-8 md:py-24">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">Professional Profiles</h2>
             <span className="text-xs text-muted-foreground">06 / Connect</span>
