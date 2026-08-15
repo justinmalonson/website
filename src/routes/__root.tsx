@@ -73,29 +73,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Justin Malonson — Software Engineer & Blockchain Architect" },
-      {
-        name: "description",
-        content:
-          "Justin Malonson designs and builds foundational computing infrastructure — distributed systems, cryptographic protocols, and AI-integrated architectures.",
-      },
       { name: "author", content: "Justin Malonson" },
-      {
-        property: "og:title",
-        content: "Justin Malonson — Software Engineer & Blockchain Architect",
-      },
-      {
-        property: "og:description",
-        content:
-          "Designing and building foundational computing infrastructure for the next era of the web.",
-      },
-      { property: "og:site_name", content: "Justin Malonson" },
-      { property: "og:type", content: "website" },
       { name: "application-name", content: "Justin Malonson" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@justinmalonson" },
-      { name: "twitter:creator", content: "@justinmalonson" },
-      { name: "publisher", content: "Blockchain Computer Inc." },
     ],
     links: [
       {

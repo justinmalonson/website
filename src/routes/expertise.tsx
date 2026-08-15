@@ -1,79 +1,48 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { MAILTO } from "@/lib/contact-mailto";
+import {
+  EXPERTISE_URL,
+  HOME_URL,
+  PERSON_ID,
+  WEBSITE_ID,
+  breadcrumb,
+  jsonLd,
+  socialMeta,
+  website,
+} from "@/lib/seo";
+
+const expertiseTitle = "Software Engineering Expertise | Justin Malonson";
+const expertiseDescription =
+  "Explore Justin Malonson's software engineering work across distributed systems, cryptography, cybersecurity, blockchain architecture, artificial intelligence, and verifiable computation.";
 
 export const Route = createFileRoute("/expertise")({
   head: () => ({
-    meta: [
-      { title: "Expertise — Justin Malonson | Cryptography, Web5 & Decentralized Systems" },
-      {
-        name: "description",
-        content:
-          "Justin Malonson's areas of expertise: cryptography, blockchain architecture, Web5, decentralized identity, privacy-preserving systems, zero-knowledge proofs, distributed systems, AI governance, and verifiable computation.",
-      },
-      { property: "og:title", content: "Expertise — Justin Malonson" },
-      {
-        property: "og:description",
-        content:
-          "Research, engineering, and innovation across cryptography, digital identity, privacy, and decentralized systems.",
-      },
-      { property: "og:url", content: "https://justinmalonson.com/expertise" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@justinmalonson" },
-      { name: "twitter:creator", content: "@justinmalonson" },
-    ],
-    links: [{ rel: "canonical", href: "https://justinmalonson.com/expertise" }],
+    meta: socialMeta({
+      title: expertiseTitle,
+      description: expertiseDescription,
+      url: EXPERTISE_URL,
+    }),
+    links: [{ rel: "canonical", href: EXPERTISE_URL }],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfilePage",
-          url: "https://justinmalonson.com/expertise",
-          name: "Expertise — Justin Malonson",
-          about: { "@id": "https://justinmalonson.com/#person" },
-          mainEntity: {
-            "@type": "Person",
-            "@id": "https://justinmalonson.com/#person",
-            name: "Justin Malonson",
-            jobTitle: "Founder & CEO, Blockchain Computer Inc.",
-            knowsAbout: [
-              "Cryptography",
-              "Blockchain Architecture",
-              "Web5 Systems",
-              "Decentralized Identity",
-              "Privacy-Preserving Systems",
-              "Zero-Knowledge Proofs",
-              "Distributed Systems",
-              "AI Governance",
-              "Verifiable Computation",
-              "Technology Strategy",
-            ],
-          },
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            {
-              "@type": "ListItem",
-              position: 1,
-              name: "Home",
-              item: "https://justinmalonson.com",
-            },
-            {
-              "@type": "ListItem",
-              position: 2,
-              name: "Expertise",
-              item: "https://justinmalonson.com/expertise",
-            },
-          ],
-        }),
-      },
+      jsonLd([
+        website(),
+        {
+          "@type": "WebPage",
+          "@id": `${EXPERTISE_URL}#webpage`,
+          url: EXPERTISE_URL,
+          name: expertiseTitle,
+          description: expertiseDescription,
+          isPartOf: { "@id": WEBSITE_ID },
+          about: { "@id": PERSON_ID },
+          author: { "@id": PERSON_ID },
+          breadcrumb: { "@id": `${EXPERTISE_URL}#breadcrumb` },
+        },
+        breadcrumb(`${EXPERTISE_URL}#breadcrumb`, [
+          { name: "Home", url: HOME_URL },
+          { name: "Expertise", url: EXPERTISE_URL },
+        ]),
+      ]),
     ],
   }),
   component: ExpertisePage,
@@ -127,71 +96,74 @@ function ExpertisePage() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteNav />
 
-      {/* Hero */}
-      <section className="px-5 pt-16 md:px-8 md:pt-28">
-        <nav aria-label="breadcrumb" className="label mb-6">
-          <ol className="flex flex-wrap items-center gap-1.5">
-            <li>
-              <Link
-                to="/"
-                className="text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Home
-              </Link>
-            </li>
-            <li className="text-muted-foreground" aria-hidden="true">
-              /
-            </li>
-            <li className="text-foreground" aria-current="page">
-              Expertise
-            </li>
-          </ol>
-        </nav>
-        <h1 className="display text-6xl leading-[0.9] sm:text-7xl md:text-[10rem]">Expertise</h1>
-        <p className="mt-8 max-w-3xl text-lg text-muted-foreground md:text-xl">
-          Research, engineering, and innovation across cryptography, digital identity, privacy, and
-          decentralized systems.
-        </p>
-      </section>
-
-      {/* Areas grid */}
-      <section className="px-5 py-20 md:px-8 md:py-32">
-        <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
-          <h2 className="display text-3xl sm:text-4xl md:text-6xl">Areas of Practice</h2>
-          <span className="text-xs text-muted-foreground">02 / Practice</span>
-        </div>
-        <div className="grid grid-cols-1 gap-px bg-foreground md:grid-cols-2 lg:grid-cols-3">
-          {areas.map((a, i) => (
-            <article key={a.title} className="flex flex-col bg-background p-8 md:p-10">
-              <span className="label mb-6 text-muted-foreground">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="display mb-4 text-2xl md:text-3xl">{a.title}</h3>
-              <p className="text-sm text-muted-foreground">{a.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="border-t border-foreground bg-foreground px-5 py-20 text-background md:px-8 md:py-32">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="label mb-6 text-background/60">Collaborate</p>
-          <h2 className="display text-3xl sm:text-4xl md:text-7xl">
-            Have a problem that needs deep technical thinking?
-          </h2>
-          <p className="mx-auto mt-8 max-w-2xl text-background/70">
-            Engagements span research, architecture review, protocol design, and advisory work for
-            founders and engineering teams building cryptographic and decentralized infrastructure.
+      <main>
+        {/* Hero */}
+        <section className="px-5 pt-16 md:px-8 md:pt-28">
+          <nav aria-label="breadcrumb" className="label mb-6">
+            <ol className="flex flex-wrap items-center gap-1.5">
+              <li>
+                <Link
+                  to="/"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Home
+                </Link>
+              </li>
+              <li className="text-muted-foreground" aria-hidden="true">
+                /
+              </li>
+              <li className="text-foreground" aria-current="page">
+                Expertise
+              </li>
+            </ol>
+          </nav>
+          <h1 className="display text-6xl leading-[0.9] sm:text-7xl md:text-[10rem]">Expertise</h1>
+          <p className="mt-8 max-w-3xl text-lg text-muted-foreground md:text-xl">
+            Research, engineering, and innovation across cryptography, digital identity, privacy,
+            and decentralized systems.
           </p>
-          <a
-            href={MAILTO.expertise}
-            className="mt-12 inline-flex items-center gap-3 border border-background px-8 py-4 text-sm transition-colors hover:bg-background hover:text-foreground"
-          >
-            Get in touch →
-          </a>
-        </div>
-      </section>
+        </section>
+
+        {/* Areas grid */}
+        <section className="px-5 py-20 md:px-8 md:py-32">
+          <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
+            <h2 className="display text-3xl sm:text-4xl md:text-6xl">Areas of Practice</h2>
+            <span className="text-xs text-muted-foreground">02 / Practice</span>
+          </div>
+          <div className="grid grid-cols-1 gap-px bg-foreground md:grid-cols-2 lg:grid-cols-3">
+            {areas.map((a, i) => (
+              <article key={a.title} className="flex flex-col bg-background p-8 md:p-10">
+                <span className="label mb-6 text-muted-foreground">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="display mb-4 text-2xl md:text-3xl">{a.title}</h3>
+                <p className="text-sm text-muted-foreground">{a.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="border-t border-foreground bg-foreground px-5 py-20 text-background md:px-8 md:py-32">
+          <div className="mx-auto max-w-5xl text-center">
+            <p className="label mb-6 text-background/60">Collaborate</p>
+            <h2 className="display text-3xl sm:text-4xl md:text-7xl">
+              Have a problem that needs deep technical thinking?
+            </h2>
+            <p className="mx-auto mt-8 max-w-2xl text-background/70">
+              Engagements span research, architecture review, protocol design, and advisory work for
+              founders and engineering teams building cryptographic and decentralized
+              infrastructure.
+            </p>
+            <a
+              href={MAILTO.expertise}
+              className="mt-12 inline-flex items-center gap-3 border border-background px-8 py-4 text-sm transition-colors hover:bg-background hover:text-foreground"
+            >
+              Get in touch →
+            </a>
+          </div>
+        </section>
+      </main>
 
       <SiteFooter />
     </div>
@@ -205,17 +177,17 @@ function SiteFooter() {
         <div>
           <div className="display text-2xl sm:text-3xl">Justin Malonson</div>
           <p className="mt-2 text-sm text-muted-foreground">
-            Software Engineer & Blockchain Architect — based in the United States.
+            Software Engineer — based in the United States.
           </p>
         </div>
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-          <Link to="/about" className="hover:underline">
-            About
+          <Link to="/about/" className="hover:underline">
+            About Justin Malonson
           </Link>
-          <Link to="/expertise" className="hover:underline">
+          <Link to="/expertise/" className="hover:underline">
             Expertise
           </Link>
-          <Link to="/contact" className="hover:underline">
+          <Link to="/contact/" className="hover:underline">
             Contact
           </Link>
           <a

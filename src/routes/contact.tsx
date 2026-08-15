@@ -3,74 +3,50 @@ import { SiteNav } from "@/components/SiteNav";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
 import { MAILTO } from "@/lib/contact-mailto";
+import {
+  CONTACT_URL,
+  HOME_URL,
+  PERSON_ID,
+  WEBSITE_ID,
+  breadcrumb,
+  jsonLd,
+  socialMeta,
+  website,
+} from "@/lib/seo";
+
+const contactTitle = "Contact Justin Malonson | Software Engineer";
+const contactDescription =
+  "Contact software engineer Justin Malonson about collaboration, advisory work, research, speaking, or technology partnerships.";
 
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
-    meta: [
-      { title: "Contact Justin Malonson | Collaboration, Advisory & Research" },
-      {
-        name: "description",
-        content:
-          "Contact Justin Malonson for collaboration, advisory opportunities, speaking engagements, research discussions, or technology partnerships in cryptography, decentralized systems, and AI.",
-      },
-      { property: "og:title", content: "Contact Justin Malonson" },
-      {
-        property: "og:description",
-        content:
-          "Get in touch with Justin Malonson — collaboration, advisory, speaking, research, and partnership inquiries.",
-      },
-      { property: "og:url", content: "https://justinmalonson.com/contact" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@justinmalonson" },
-      { name: "twitter:creator", content: "@justinmalonson" },
-    ],
-    links: [{ rel: "canonical", href: "https://justinmalonson.com/contact" }],
+    meta: socialMeta({
+      title: contactTitle,
+      description: contactDescription,
+      url: CONTACT_URL,
+    }),
+    links: [{ rel: "canonical", href: CONTACT_URL }],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
+      jsonLd([
+        website(),
+        {
           "@type": "ContactPage",
-          url: "https://justinmalonson.com/contact",
-          name: "Contact Justin Malonson",
-          about: { "@id": "https://justinmalonson.com/#person" },
-          mainEntity: {
-            "@type": "Person",
-            "@id": "https://justinmalonson.com/#person",
-            name: "Justin Malonson",
-            sameAs: [
-              "https://www.linkedin.com/in/justin-malonson",
-              "https://x.com/justinmalonson",
-              "https://github.com/justinmalonson",
-              "https://t.me/justinmalonson",
-            ],
-          },
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            {
-              "@type": "ListItem",
-              position: 1,
-              name: "Home",
-              item: "https://justinmalonson.com",
-            },
-            {
-              "@type": "ListItem",
-              position: 2,
-              name: "Contact",
-              item: "https://justinmalonson.com/contact",
-            },
-          ],
-        }),
-      },
+          "@id": `${CONTACT_URL}#webpage`,
+          url: CONTACT_URL,
+          name: contactTitle,
+          description: contactDescription,
+          isPartOf: { "@id": WEBSITE_ID },
+          about: { "@id": PERSON_ID },
+          mainEntity: { "@id": PERSON_ID },
+          breadcrumb: { "@id": `${CONTACT_URL}#breadcrumb` },
+        },
+        breadcrumb(`${CONTACT_URL}#breadcrumb`, [
+          { name: "Home", url: HOME_URL },
+          { name: "Contact", url: CONTACT_URL },
+        ]),
+      ]),
     ],
   }),
   component: ContactPage,
@@ -178,141 +154,143 @@ function ContactPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteNav />
 
-      {/* Hero */}
-      <section className="px-5 pt-16 md:px-8 md:pt-28">
-        <nav aria-label="breadcrumb" className="label mb-6">
-          <ol className="flex flex-wrap items-center gap-1.5">
-            <li>
-              <Link
-                to="/"
-                className="text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Home
-              </Link>
-            </li>
-            <li className="text-muted-foreground" aria-hidden="true">
-              /
-            </li>
-            <li className="text-foreground" aria-current="page">
-              Contact
-            </li>
-          </ol>
-        </nav>
-        <h1 className="display text-4xl leading-[1.05] sm:text-6xl md:text-8xl md:leading-[0.95] lg:text-9xl">
-          Contact Justin Malonson
-        </h1>
-        <p className="mt-8 max-w-3xl text-lg text-muted-foreground md:text-xl">
-          Interested in collaboration, advisory opportunities, speaking engagements, research
-          discussions, or technology partnerships? Get in touch.
-        </p>
-      </section>
+      <main>
+        {/* Hero */}
+        <section className="px-5 pt-16 md:px-8 md:pt-28">
+          <nav aria-label="breadcrumb" className="label mb-6">
+            <ol className="flex flex-wrap items-center gap-1.5">
+              <li>
+                <Link
+                  to="/"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Home
+                </Link>
+              </li>
+              <li className="text-muted-foreground" aria-hidden="true">
+                /
+              </li>
+              <li className="text-foreground" aria-current="page">
+                Contact
+              </li>
+            </ol>
+          </nav>
+          <h1 className="display text-4xl leading-[1.05] sm:text-6xl md:text-8xl md:leading-[0.95] lg:text-9xl">
+            Contact Justin Malonson
+          </h1>
+          <p className="mt-8 max-w-3xl text-lg text-muted-foreground md:text-xl">
+            Interested in collaboration, advisory opportunities, speaking engagements, research
+            discussions, or technology partnerships? Get in touch.
+          </p>
+        </section>
 
-      {/* Form + profiles */}
-      <section className="px-5 py-16 md:px-8 md:py-32">
-        <div className="grid grid-cols-1 gap-px bg-foreground lg:grid-cols-3">
-          {/* Form */}
-          <div className="bg-background p-5 sm:p-8 md:p-12 lg:col-span-2">
-            <h2 className="display mb-8 text-2xl sm:text-3xl md:text-5xl">Send a message</h2>
-            <form onSubmit={onSubmit} noValidate className="space-y-6">
-              {/* Honeypot field — hidden from users, visible to bots */}
-              <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
-                <label>
-                  Leave this field empty
-                  <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" />
-                </label>
-              </div>
+        {/* Form + profiles */}
+        <section className="px-5 py-16 md:px-8 md:py-32">
+          <div className="grid grid-cols-1 gap-px bg-foreground lg:grid-cols-3">
+            {/* Form */}
+            <div className="bg-background p-5 sm:p-8 md:p-12 lg:col-span-2">
+              <h2 className="display mb-8 text-2xl sm:text-3xl md:text-5xl">Send a message</h2>
+              <form onSubmit={onSubmit} noValidate className="space-y-6">
+                {/* Honeypot field — hidden from users, visible to bots */}
+                <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+                  <label>
+                    Leave this field empty
+                    <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </div>
 
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <Field
-                  label="Name"
-                  name="name"
-                  type="text"
-                  required
-                  autoComplete="name"
-                  maxLength={100}
-                />
-                <Field
-                  label="Email"
-                  name="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  maxLength={255}
-                />
-                <Field
-                  label="Company"
-                  name="company"
-                  type="text"
-                  autoComplete="organization"
-                  maxLength={150}
-                />
-                <Field label="Subject" name="user_subject" type="text" required maxLength={200} />
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <Field
+                    label="Name"
+                    name="name"
+                    type="text"
+                    required
+                    autoComplete="name"
+                    maxLength={100}
+                  />
+                  <Field
+                    label="Email"
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    maxLength={255}
+                  />
+                  <Field
+                    label="Company"
+                    name="company"
+                    type="text"
+                    autoComplete="organization"
+                    maxLength={150}
+                  />
+                  <Field label="Subject" name="user_subject" type="text" required maxLength={200} />
+                </div>
+                <div>
+                  <label className="label mb-2 block text-muted-foreground">Message</label>
+                  <textarea
+                    name="message"
+                    required
+                    maxLength={2000}
+                    rows={6}
+                    className="w-full border border-foreground bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-foreground"
+                  />
+                </div>
+
+                {status === "error" && error && (
+                  <p className="border border-foreground p-4 text-sm">{error}</p>
+                )}
+                {status === "sent" && (
+                  <p className="border border-foreground bg-foreground p-4 text-sm text-background">
+                    Thank you. Your message has been sent.
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="inline-flex w-full items-center justify-center gap-3 border border-foreground bg-foreground px-8 py-4 text-sm text-background transition-colors hover:bg-background hover:text-foreground sm:w-auto sm:justify-start"
+                >
+                  {status === "sending" ? "Sending…" : "Send message →"}
+                </button>
+              </form>
+            </div>
+
+            {/* Profiles */}
+            <aside className="flex flex-col gap-8 bg-background p-5 sm:p-8 md:p-12">
+              <div>
+                <p className="label mb-4 text-muted-foreground">Direct</p>
+                <a
+                  href={MAILTO.contact}
+                  className="display contact-email block underline-offset-4 hover:underline"
+                >
+                  hello@justinmalonson.com
+                </a>
               </div>
               <div>
-                <label className="label mb-2 block text-muted-foreground">Message</label>
-                <textarea
-                  name="message"
-                  required
-                  maxLength={2000}
-                  rows={6}
-                  className="w-full border border-foreground bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-foreground"
-                />
-              </div>
-
-              {status === "error" && error && (
-                <p className="border border-foreground p-4 text-sm">{error}</p>
-              )}
-              {status === "sent" && (
-                <p className="border border-foreground bg-foreground p-4 text-sm text-background">
-                  Thank you. Your message has been sent.
-                </p>
-              )}
-
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="inline-flex w-full items-center justify-center gap-3 border border-foreground bg-foreground px-8 py-4 text-sm text-background transition-colors hover:bg-background hover:text-foreground sm:w-auto sm:justify-start"
-              >
-                {status === "sending" ? "Sending…" : "Send message →"}
-              </button>
-            </form>
-          </div>
-
-          {/* Profiles */}
-          <aside className="flex flex-col gap-8 bg-background p-5 sm:p-8 md:p-12">
-            <div>
-              <p className="label mb-4 text-muted-foreground">Direct</p>
-              <a
-                href={MAILTO.contact}
-                className="display contact-email block underline-offset-4 hover:underline"
-              >
-                hello@justinmalonson.com
-              </a>
-            </div>
-            <div>
-              <p className="label mb-4 text-muted-foreground">Profiles</p>
-              <ul className="space-y-3 border-t border-foreground pt-5 text-sm">
-                {profiles.map((p) => (
-                  <li
-                    key={p.label}
-                    className="flex justify-between border-b border-foreground/20 pb-3"
-                  >
-                    <a
-                      href={p.href}
-                      target="_blank"
-                      rel="me noopener noreferrer"
-                      className="hover:underline"
+                <p className="label mb-4 text-muted-foreground">Profiles</p>
+                <ul className="space-y-3 border-t border-foreground pt-5 text-sm">
+                  {profiles.map((p) => (
+                    <li
+                      key={p.label}
+                      className="flex justify-between border-b border-foreground/20 pb-3"
                     >
-                      {p.label}
-                    </a>
-                    <span className="text-muted-foreground">{p.handle} ↗</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
-        </div>
-      </section>
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="me noopener noreferrer"
+                        className="hover:underline"
+                      >
+                        {p.label}
+                      </a>
+                      <span className="text-muted-foreground">{p.handle} ↗</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </main>
 
       {/* Footer */}
       <footer className="border-t border-foreground bg-background px-5 py-10 md:px-8">
@@ -320,17 +298,17 @@ function ContactPage() {
           <div>
             <div className="display text-2xl sm:text-3xl">Justin Malonson</div>
             <p className="mt-2 text-sm text-muted-foreground">
-              Software Engineer & Blockchain Architect — based in the United States.
+              Software Engineer — based in the United States.
             </p>
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <Link to="/about" className="hover:underline">
-              About
+            <Link to="/about/" className="hover:underline">
+              About Justin Malonson
             </Link>
-            <Link to="/expertise" className="hover:underline">
+            <Link to="/expertise/" className="hover:underline">
               Expertise
             </Link>
-            <Link to="/contact" className="hover:underline">
+            <Link to="/contact/" className="hover:underline">
               Contact
             </Link>
             <a

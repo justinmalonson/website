@@ -202,16 +202,20 @@
   pointer-events: none;
   z-index: 2;
   background:
-    linear-gradient(to right,
+    linear-gradient(
+      to right,
       var(--background) 0%,
       transparent 18%,
       transparent 82%,
-      var(--background) 100%),
-    linear-gradient(to bottom,
+      var(--background) 100%
+    ),
+    linear-gradient(
+      to bottom,
       var(--background) 0%,
       transparent 12%,
       transparent 88%,
-      var(--background) 100%);
+      var(--background) 100%
+    );
 }
 
 .hero-grid {
@@ -226,19 +230,22 @@
 }
 
 .hero-name {
-  font-size: clamp(5rem, 18vw, 14rem);
+  min-width: 0;
+  font-size: clamp(3.5rem, 18vw, 10rem);
   line-height: 0.85;
   font-weight: 700;
   letter-spacing: -0.045em;
   margin: 0;
   align-self: stretch;
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 @media (min-width: 768px) {
   .hero-name {
-    font-size: clamp(8rem, 15vw, 16rem);
+    font-size: clamp(6rem, 12vw, 11rem);
+    align-items: flex-start;
   }
 }
 
@@ -254,4 +261,3 @@
     font-size: 0.8rem;
   }
 }
-

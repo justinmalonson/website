@@ -1,13 +1,18 @@
 import { Link } from "@tanstack/react-router";
 
 type Item =
-  | { num: string; label: string; kind: "route"; to: "/" | "/about" | "/expertise" | "/contact" }
+  | {
+      num: string;
+      label: string;
+      kind: "route";
+      to: "/" | "/about/" | "/expertise/" | "/contact/";
+    }
   | { num: string; label: string; kind: "anchor"; href: string };
 
 const items: Item[] = [
-  { num: "01", label: "About", kind: "route", to: "/about" },
-  { num: "02", label: "Expertise", kind: "route", to: "/expertise" },
-  { num: "03", label: "Contact", kind: "route", to: "/contact" },
+  { num: "01", label: "About", kind: "route", to: "/about/" },
+  { num: "02", label: "Expertise", kind: "route", to: "/expertise/" },
+  { num: "03", label: "Contact", kind: "route", to: "/contact/" },
 ];
 
 export function SiteNav() {

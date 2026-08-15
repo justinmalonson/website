@@ -10,7 +10,8 @@ TanStack Start (React) on Vite with server-side rendering.
 - Publish directory: `dist/client`
 - Node version: use a current Netlify-supported LTS release
 
-The repository is configured for Netlify with `@netlify/vite-plugin-tanstack-start` in [vite.config.ts](/Users/justinm/Downloads/website/vite.config.ts:1) and build settings in [netlify.toml](/Users/justinm/Downloads/website/netlify.toml:1).
+The repository is configured for Netlify with `@netlify/vite-plugin-tanstack-start` in
+`vite.config.ts` and build settings in `netlify.toml`.
 
 ## Required Environment Variables
 
@@ -36,11 +37,18 @@ The repository is configured for Netlify with `@netlify/vite-plugin-tanstack-sta
 6. Set the preferred primary domain in Netlify. Netlify will automatically redirect between the apex domain and `www` for that pair.
 7. Wait for DNS validation and automatic HTTPS provisioning to complete before switching traffic.
 
+The repository also includes an explicit permanent `www` → apex redirect. Keep
+`https://justinmalonson.com` selected as the Netlify primary domain.
+
 ## Routes to Validate After Deploy
 
 - `/`
-- `/about`
-- `/expertise`
-- `/contact`
+- `/about/`
+- `/expertise/`
+- `/contact/`
+
+Also verify that `/about` redirects once to `/about/`, `/index.html` redirects to `/`, and the
+canonical URL in each rendered response uses HTTPS, the apex hostname, and the preferred trailing
+slash.
 
 These routes are handled by the TanStack Start Netlify integration, so direct URL access should resolve without a static SPA redirect.
