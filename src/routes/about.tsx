@@ -159,7 +159,7 @@ function AboutPage() {
         </section>
 
         {/* Biography */}
-        <section className="px-5 py-16 md:px-8 md:py-24">
+        <section className="px-5 py-[clamp(4rem,6vw,6rem)] md:px-8">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">Biography</h2>
             <span className="text-xs text-muted-foreground">01 / Biography</span>
@@ -196,7 +196,7 @@ function AboutPage() {
         </section>
 
         {/* Blockchain Computer and entrepreneurship */}
-        <section className="border-t border-foreground bg-foreground px-5 py-16 text-background md:px-8 md:py-24">
+        <section className="border-t border-foreground bg-foreground px-5 py-[clamp(4rem,6vw,6rem)] text-background md:px-8">
           <div className="mb-12 flex items-end justify-between border-b border-background/30 pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">
               Blockchain Computer & Entrepreneurship
@@ -236,7 +236,7 @@ function AboutPage() {
         </section>
 
         {/* Research and technical work */}
-        <section className="px-5 py-16 md:px-8 md:py-24">
+        <section className="px-5 py-[clamp(4rem,6vw,6rem)] md:px-8">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">Research & Technical Work</h2>
             <span className="text-xs text-muted-foreground">03 / Research</span>
@@ -253,7 +253,7 @@ function AboutPage() {
         </section>
 
         {/* Current Projects */}
-        <section className="border-t border-foreground px-5 py-16 md:px-8 md:py-24">
+        <section className="border-t border-foreground px-5 py-[clamp(4rem,6vw,6rem)] md:px-8">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">Current Projects</h2>
             <span className="text-xs text-muted-foreground">04 / Now</span>
@@ -308,7 +308,7 @@ function AboutPage() {
         </section>
 
         {/* Vision */}
-        <section className="border-t border-foreground bg-foreground px-5 py-16 text-background md:px-8 md:py-28">
+        <section className="border-t border-foreground bg-foreground px-5 py-[clamp(4rem,7vw,7rem)] text-background md:px-8">
           <div className="mx-auto max-w-5xl">
             <p className="label mb-6 text-background/60">05 / Vision</p>
             <h2 className="display text-3xl sm:text-4xl md:text-7xl">
@@ -333,7 +333,7 @@ function AboutPage() {
         </section>
 
         {/* Professional Profiles */}
-        <section className="px-5 py-16 md:px-8 md:py-24">
+        <section className="px-5 py-[clamp(4rem,6vw,6rem)] md:px-8">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">Professional Profiles</h2>
             <span className="text-xs text-muted-foreground">06 / Connect</span>

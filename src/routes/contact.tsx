@@ -156,7 +156,7 @@ function ContactPage() {
 
       <main>
         {/* Hero */}
-        <section className="px-5 pt-16 md:px-8 md:pt-28">
+        <section className="px-5 pt-[clamp(3rem,7vw,7rem)] md:px-8">
           <nav aria-label="breadcrumb" className="label mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
@@ -185,7 +185,7 @@ function ContactPage() {
         </section>
 
         {/* Form + profiles */}
-        <section className="px-5 py-16 md:px-8 md:py-32">
+        <section className="px-5 py-[clamp(4rem,8vw,8rem)] md:px-8">
           <div className="grid grid-cols-1 gap-px bg-foreground lg:grid-cols-3">
             {/* Form */}
             <div className="bg-background p-5 sm:p-8 md:p-12 lg:col-span-2">

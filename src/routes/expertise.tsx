@@ -98,7 +98,7 @@ function ExpertisePage() {
 
       <main>
         {/* Hero */}
-        <section className="px-5 pt-16 md:px-8 md:pt-28">
+        <section className="px-5 pt-[clamp(3rem,7vw,7rem)] md:px-8">
           <nav aria-label="breadcrumb" className="label mb-6">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
@@ -125,7 +125,7 @@ function ExpertisePage() {
         </section>
 
         {/* Areas grid */}
-        <section className="px-5 py-20 md:px-8 md:py-32">
+        <section className="px-5 py-[clamp(4rem,8vw,8rem)] md:px-8">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-3xl sm:text-4xl md:text-6xl">Areas of Practice</h2>
             <span className="text-xs text-muted-foreground">02 / Practice</span>
@@ -144,7 +144,7 @@ function ExpertisePage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-foreground bg-foreground px-5 py-20 text-background md:px-8 md:py-32">
+        <section className="border-t border-foreground bg-foreground px-5 py-[clamp(4rem,8vw,8rem)] text-background md:px-8">
           <div className="mx-auto max-w-5xl text-center">
             <p className="label mb-6 text-background/60">Collaborate</p>
             <h2 className="display text-3xl sm:text-4xl md:text-7xl">

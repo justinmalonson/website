@@ -145,11 +145,6 @@
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-
-  html {
-    overflow-x: hidden;
   }
 
   img {

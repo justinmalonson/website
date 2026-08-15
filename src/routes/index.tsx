@@ -147,7 +147,7 @@ function Index() {
         </section>
 
         {/* Marquee strip */}
-        <section className="mt-24 overflow-hidden border-y border-foreground py-6">
+        <section className="mt-[clamp(4rem,7vw,6rem)] overflow-hidden border-y border-foreground py-6">
           <div className="flex animate-[marquee_40s_linear_infinite] whitespace-nowrap gap-12 text-2xl md:text-3xl">
             {Array.from({ length: 2 }).flatMap((_, k) =>
               [
@@ -168,7 +168,7 @@ function Index() {
         </section>
 
         {/* Expertise */}
-        <section id="expertise" className="px-5 py-24 md:px-8 md:py-32">
+        <section id="expertise" className="px-5 py-[clamp(4rem,8vw,8rem)] md:px-8">
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-5xl md:text-7xl">My Expertise</h2>
             <span className="text-xs text-muted-foreground">02 / Expertise</span>
@@ -198,7 +198,7 @@ function Index() {
         {/* Testimonials */}
         <section
           id="testimonials"
-          className="border-t border-foreground px-5 py-24 md:px-8 md:py-32"
+          className="border-t border-foreground px-5 py-[clamp(4rem,8vw,8rem)] md:px-8"
         >
           <div className="mb-12 flex items-end justify-between border-b border-foreground pb-6">
             <h2 className="display text-5xl md:text-7xl">Testimonials</h2>
@@ -223,7 +223,7 @@ function Index() {
         {/* CTA */}
         <section
           id="contact"
-          className="border-t border-foreground bg-foreground px-5 py-20 text-background md:px-8 md:py-40"
+          className="border-t border-foreground bg-foreground px-5 py-[clamp(5rem,10vw,10rem)] text-background md:px-8"
         >
           <div className="mx-auto max-w-5xl text-center">
             <p className="label mb-6 text-background/60">Let's Build</p>
